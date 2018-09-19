@@ -1,1 +1,1 @@
-"# WPF Geometries Displayer" 
+# WPF Geometries Displayer
