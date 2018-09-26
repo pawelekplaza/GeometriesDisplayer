@@ -13,6 +13,7 @@
         <!-- Styles -->
         <Style x:Key="Private.Path.Style" TargetType="{x:Type Path}">
             <Setter Property="Fill" Value="Blue"/>
+            <Setter Property="Stretch" Value="Fill"/>
         </Style>
 
         <Style x:Key="Private.Paths.ItemContainerStyle" TargetType="{x:Type ListBoxItem}">
