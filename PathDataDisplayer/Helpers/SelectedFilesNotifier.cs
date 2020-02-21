@@ -13,7 +13,6 @@ namespace PathDataDisplayer.Helpers
 
         public event EventHandler<FilesSelectedArgs> FilesSelected;
 
-        public void RaiseFilesSelected(object sender, FilesSelectedArgs e) =>
-            FilesSelected?.Invoke(sender, e);
+        public void RaiseFilesSelected(object sender, FilesSelectedArgs e) => FilesSelected?.Invoke(sender, e);
     }
 }

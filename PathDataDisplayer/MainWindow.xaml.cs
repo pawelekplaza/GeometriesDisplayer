@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
+using System.Xml.Linq;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using PathDataDisplayer.Helpers;
 using PathDataDisplayer.Helpers.EventArguments;
 
@@ -23,7 +14,7 @@ namespace PathDataDisplayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+         public MainWindow()
         {
             InitializeComponent();
         }
@@ -35,16 +26,47 @@ namespace PathDataDisplayer
 
         private void BrowseCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            var browseFileDialog = new OpenFileDialog
+            using (var selectFolderDialog = new CommonOpenFileDialog
             {
-                Filter = "Xaml files (*.xaml)|*.xaml",
+                IsFolderPicker = true,
                 Multiselect = true
-            };
-            browseFileDialog.ShowDialog();
-            if (browseFileDialog.FileNames.Length == 0)
-                return;
+            })
+            {
+                selectFolderDialog.ShowDialog();
 
-            SelectedFilesNotifier.Instance.RaiseFilesSelected(this, new FilesSelectedArgs(browseFileDialog.FileNames));
+                if (!selectFolderDialog.FileNames.Any())
+                {
+                    return;
+                }
+
+                SelectedFilesNotifier.Instance.RaiseFilesSelected(this, new FilesSelectedArgs(selectFolderDialog.FileNames));
+            }
+        }
+
+        private void CopyCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CopyCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (!(e.OriginalSource is Button button))
+            {
+                return;
+            }
+
+            if (!(button.DataContext is XElement element))
+            {
+                return;
+            }
+
+            var key = element.Attributes().FirstOrDefault(x => x.Name.LocalName.Equals("Key"));
+            if (key == null)
+            {
+                return;
+            }
+
+            Clipboard.SetText(key.Value);
         }
     }
 }

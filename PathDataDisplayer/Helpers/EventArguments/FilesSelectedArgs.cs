@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PathDataDisplayer.Helpers.EventArguments
 {
     public class FilesSelectedArgs : EventArgs
     {
-        public string[] FileNames { get; set; }
+        public IEnumerable<string> FileNames { get; set; }
 
-        public FilesSelectedArgs(string[] fileNames)
+        public FilesSelectedArgs(IEnumerable<string> fileNames)
         {
             FileNames = fileNames;
         }
