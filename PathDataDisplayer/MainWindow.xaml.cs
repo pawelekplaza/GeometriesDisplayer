@@ -32,9 +32,9 @@ namespace PathDataDisplayer
                 Multiselect = true
             })
             {
-                selectFolderDialog.ShowDialog();
+                var result = selectFolderDialog.ShowDialog();
 
-                if (!selectFolderDialog.FileNames.Any())
+                if (result == CommonFileDialogResult.Cancel || !selectFolderDialog.FileNames.Any())
                 {
                     return;
                 }

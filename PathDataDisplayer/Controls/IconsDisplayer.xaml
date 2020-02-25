@@ -1,39 +1,45 @@
 ﻿<UserControl x:Class="PathDataDisplayer.Controls.IconsDisplayer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:PathDataDisplayer"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             >
     <UserControl.DataContext>
-        <local:ViewModel/>
+        <local:ViewModel />
     </UserControl.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
+            <RowDefinition Height="45" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
 
-        <StackPanel Orientation="Horizontal"
-                    Margin="10">
+        <StackPanel Margin="10" Orientation="Horizontal">
 
-            <!-- Button label -->
-            <TextBlock Text="Select a file with geometry paths "
-                       FontSize="20"/>
+            <!--  Button label  -->
+            <TextBlock FontSize="18" Text="Select a directory with resources" />
 
-            <!-- Browse button -->
-            <Button Content="Browse"
-                    FontSize="18"
-                    Width="100"
-                    Margin="10 0 0 0"
-                    Command="{x:Static local:Commands.BrowseCommand}"/>
+            <!--  Browse button  -->
+            <Button Width="100"
+                    Command="{x:Static local:Commands.BrowseCommand}"
+                    Content="Browse"
+                    FontSize="16"
+                    Margin="10,0,0,0"
+                    />
         </StackPanel>
 
-        <!-- Icons -->
-        <ListBox Grid.Row="1" Style="{DynamicResource Public.Paths.ListBox}"/>
+        <!--  Icons  -->
+        <ScrollViewer Grid.Row="1"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto"
+                      >
+            <ListBox Style="{DynamicResource Public.Paths.ListBox}" />
+        </ScrollViewer>
 
     </Grid>
 </UserControl>
