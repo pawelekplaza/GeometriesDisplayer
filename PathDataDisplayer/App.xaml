@@ -42,12 +42,11 @@
             </Setter>
         </Style>
 
-        <Style x:Key="Public.Paths.ListBox" TargetType="{x:Type ListBox}">
-            <Setter Property="ItemsSource" Value="{Binding Paths}" />
+        <Style x:Key="Public.Paths.ListBox" TargetType="{x:Type ListView}">
             <Setter Property="ItemContainerStyle" Value="{StaticResource Private.Paths.ItemContainerStyle}" />
-            <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>

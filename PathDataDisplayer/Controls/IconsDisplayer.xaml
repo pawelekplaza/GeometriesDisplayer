@@ -34,12 +34,10 @@
         </StackPanel>
 
         <!--  Icons  -->
-        <ScrollViewer Grid.Row="1"
-                      HorizontalScrollBarVisibility="Disabled"
-                      VerticalScrollBarVisibility="Auto"
-                      >
-            <ListBox Style="{DynamicResource Public.Paths.ListBox}" />
-        </ScrollViewer>
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Paths}"
+                  Style="{DynamicResource Public.Paths.ListBox}"
+                  />
 
     </Grid>
 </UserControl>
